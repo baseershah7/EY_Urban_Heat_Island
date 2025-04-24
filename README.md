@@ -6,7 +6,7 @@ This repository contains my solution for modeling and predicting the Urban Heat 
 
 ## Project Overview
 
-The Urban Heat Island effect refers to the phenomenon where urban areas experience significantly higher temperatures than surrounding rural areas due to human activities and urban infrastructure like buildings concrete absorbing more heat compared to the rural part where the vegetation and trees ratio is much higher. This project leverages multiple satellite and urban datasets to create a robust predictive model of UHI intensity.
+The Urban Heat Island effect refers to the phenomenon where urban areas experience significantly higher temperatures than surrounding rural areas due to human activities and urban infrastructure like buildings concrete absorbing more heat compared to the rural part where the vegetation and trees ratio is much higher. This project leverages multiple satellite and urban datasets to create a robust predictive model of UHI intensity. Model performance evaluated with R² (coefficient of determination) metric.
 
 ## Datasets
 
@@ -58,6 +58,7 @@ The solution integrates a diverse range of datasets to capture the complex facto
    - Implemented both standard and annular (ring) buffers at multiple scales (500m-15,000m)
    - This approach captured spatial relationships at different distances without requiring explicit coordinates
    - Generated powerful features for urban heat drivers at increasing distances from measurement points
+  
 
 ### Feature Engineering
 - Developed specialized features capturing building-vegetation interactions
