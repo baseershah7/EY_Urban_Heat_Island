@@ -2,11 +2,11 @@
 
 ## 🏆 3rd Place Solution on EY Urban Heat Island Competition Leaderboard
 
-This repository contains my solution for modeling and predicting the Urban Heat Island (UHI) effect in New York City's Bronx and Manhattan regions. The model achieved a leaderboard score of 0.9837, securing 3rd place in the competition and earning recognition as a global semi-finalist.
+This repository contains my solution for modeling and predicting the Urban Heat Island (UHI) effect in New York City's Bronx and Manhattan regions. The model achieved a leaderboard score of 0.9837, securing 3rd place in the competition and earning recognition as a global semi-finalist by the organizers.
 
 ## Project Overview
 
-The Urban Heat Island effect refers to the phenomenon where urban areas experience significantly higher temperatures than surrounding rural areas due to human activities and urban infrastructure. This project leverages multiple satellite and urban datasets to create a robust predictive model of UHI intensity.
+The Urban Heat Island effect refers to the phenomenon where urban areas experience significantly higher temperatures than surrounding rural areas due to human activities and urban infrastructure like buildings concrete absorbing more heat compared to the rural part where the vegetation and trees ratio is much higher. This project leverages multiple satellite and urban datasets to create a robust predictive model of UHI intensity.
 
 ## Datasets
 
@@ -17,17 +17,83 @@ The solution integrates a diverse range of datasets to capture the complex facto
 - **Environmental Factors**: Elevation points, forestry data, weather measurements
 - **Network Analysis**: OSMNX street networks for connectivity metrics
 
-| Dataset Name | Features Extracted | Source |
-|-------------|-------------------|--------|
-| Landsat Satellite Data | Surface temperature (LWIR11), thermal variation metrics, temporal stability indices | Microsoft Planetary Computer |
-| Sentinel-2 Satellite Data | EVI, Albedo, vegetation stress indices, spectral anomaly scores | Microsoft Planetary Computer |
-| NYC Tree Census (2015) | Tree count, avg_tree_health, tree_size, ring features | NYC Open Data |
-| NYC Building Footprints | Building count/height/area, ground elevation, ring features | NYC Open Data |
-| NYC Traffic 2022 | Traffic volume, traffic count, ring features | NYC Open Data |
-| OSMNX Street Networks | Distance to water/park, street length, road/node density | OSMNX Library |
-| NYC Planimetric Database | Elevation, elevation range, slope | NYC Open Data |
-| Weather Data | Air temperature, humidity, wind speed, solar flux, wind direction | NY Mesonet |
-| Forestry Data | Mean tree DBH, forestry count, risk score, species details | Center for Open Science |
+|
+ Dataset Name 
+|
+ Features Extracted 
+|
+ Source 
+|
+|
+-------------
+|
+-------------------
+|
+--------
+|
+|
+ Landsat Satellite Data 
+|
+ Surface temperature (LWIR11), thermal variation metrics, temporal stability indices 
+|
+ [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/group/landsat) 
+|
+|
+ Sentinel-2 Satellite Data 
+|
+ EVI, Albedo, vegetation stress indices, spectral anomaly scores 
+|
+ [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a)
+|
+|
+ NYC Tree Census (2015) 
+|
+ Tree count, avg_tree_health, tree_size, ring features 
+|
+ NYC Open Data 
+|
+|
+ NYC Building Footprints 
+|
+ Building count/height/area, ground elevation, ring features 
+|
+ NYC Open Data 
+|
+|
+ NYC Traffic 2022 
+|
+ Traffic volume, traffic count, ring features 
+|
+ NYC Open Data 
+|
+|
+ OSMNX Street Networks 
+|
+ Distance to water/park, street length, road/node density 
+|
+ OSMNX Library 
+|
+|
+ NYC Planimetric Database 
+|
+ Elevation, elevation range, slope 
+|
+ NYC Open Data 
+|
+|
+ Weather Data 
+|
+ Air temperature, humidity, wind speed, solar flux, wind direction 
+|
+ NY Mesonet 
+|
+|
+ Forestry Data 
+|
+ Mean tree DBH, forestry count, risk score, species details 
+|
+ Center for Open Science 
+|
 
 ## Methodology
 
@@ -37,10 +103,34 @@ The solution integrates a diverse range of datasets to capture the complex facto
 - Implemented temporal aggregation techniques to ensure model stability
 - Null values in buffer-based features were imputed with 0 to reflect absence of structures or vegetation
 
+## Key Factors
+
+1. **Satellite Data Resampling**
+   - Implemented bilinear resampling of 10m Sentinel-2 data to 30m resolution
+   - This technique effectively removed noise while preserving important spatial patterns (similar to an autoencoder)
+   - Compared with other resampling methods, bilinear resampling yielded significant CV and LB improvements
+
+2. **Weather Data Temporal Alignment**
+   - Solved critical temporal misalignment between training data (timeframes 3-4) and weather data (timeframes 6-20)
+   - Developed linear time compression algorithm to map weather data to training timeframes
+   - Validated multiple window sizes to optimize temporal matching
+   - Mapped closest temporal weather measurements to training observations
+
+3. **Spatial Imputation for Test Data**
+   - Addressed missing time data in the test set using innovative spatial imputation techniques
+   - Applied nearest neighbor spatial joins to impute weather data values
+   - Created a two-step imputation process: temporal alignment for training data, followed by spatial imputation for test data
+
+4. **Advanced Buffer Analysis**
+   - Implemented both standard and annular (ring) buffers at multiple scales (500m-15,000m)
+   - This approach captured spatial relationships at different distances without requiring explicit coordinates
+   - Generated powerful features for urban heat drivers at increasing distances from measurement points
+
 ### Feature Engineering
 - Developed specialized features capturing building-vegetation interactions
 - Created thermal mass indicators and vertical density metrics
 - Engineered elevation gradients and building height dispersion ratios
+- Both non-linear and domain-friendly features created for diverse impact.
 - Used RFECV to select optimal features (60 for single model, ~220 for ensemble)
 
 ### Model Architecture
@@ -77,16 +167,18 @@ The model revealed important relationships between urban heat intensity and:
 ## Repository Structure
 
 ```
-├── notebooks/
-│   ├── data_preprocessing.ipynb
-│   ├── feature_engineering.ipynb
-│   ├── single_model.ipynb
-│   └── ensemble_model.ipynb
-├── models/
-│   ├── base_models/
-│   └── meta_model/
-├── data/
-│   └── processed/
+├── ey_Landsat_train.ipynb       # Landsat data mapped with study coordinates to get them model ready.
+├── ey_Sentinel2_train.ipynb     # Sentinel-2 data mapped with study coorinates to get them model ready.
+├── landsat_lst.ipynb            # Landsat-8 prerprocessing and extractions
+├── sentinel2.ipynb              # Sentinel-2 processing and extractions
+├── ey_external_data.ipynb       # External datasets integration(elevation, tree_cencus, forestry, traffic)
+├── ey_extra_data.ipynb          # Additional data sources processing(osmnx)
+├── ey_geographical.ipynb        # Geographical features engineering
+├── ey_weather_data.ipynb        # Weather data processing
+├── ey_feature_selection.ipynb   # Feature selection implementation
+├── ey_hyperparameter_tuning.ipynb  # Model hyperparameter optimization
+├── ey_ensembling.ipynb          # Model ensemble creation with oofs
+├── ey_final_boss.ipynb          # Final single model solution implementation
 ├── README.md
 └── requirements.txt
 ```
@@ -96,9 +188,9 @@ The model revealed important relationships between urban heat intensity and:
 1. Clone this repository
 2. Install requirements: `pip install -r requirements.txt`
 3. Run the notebooks in order to reproduce the solution:
-   - First process the data with `data_preprocessing.ipynb`
-   - Then engineer features with `feature_engineering.ipynb`
-   - Train models with `single_model.ipynb` or `ensemble_model.ipynb`
+   - Data Extraction from satellite notebooks and mapping them to coordinates.
+   - Extracting additional datasets from the complimentary notebooks.
+   - Train models with `single_model.ipynb` or `ensemble_model.ipynb` with the combined dataset.
 
 ## Acknowledgements
 
