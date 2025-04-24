@@ -36,9 +36,9 @@ The solution integrates a diverse range of datasets to capture the complex facto
 - Implemented temporal aggregation techniques to ensure model stability
 - Null values in buffer-based features were imputed with 0 to reflect absence of structures or vegetation
 
-## Additional Analytics
+### Additional Analytics
 
-### Air Pollution & Heat Vulnerability Analysis
+#### Air Pollution & Heat Vulnerability Analysis
 
 During the exploratory phase, I analyzed:
 - Air pollution indices from raster datasets
