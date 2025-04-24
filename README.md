@@ -36,6 +36,22 @@ The solution integrates a diverse range of datasets to capture the complex facto
 - Implemented temporal aggregation techniques to ensure model stability
 - Null values in buffer-based features were imputed with 0 to reflect absence of structures or vegetation
 
+## Additional Analytics
+
+### Air Pollution & Heat Vulnerability Analysis
+
+During the exploratory phase, I analyzed:
+- Air pollution indices from raster datasets
+- Heat vulnerability index scores from CSV data
+
+These datasets were examined to assess correlations with UHI intensity. However, they were ultimately excluded from the final model evaluation, as existing features already captured the maximum predictive signals:
+- Thermal bands from satellite imagery
+- Vegetation indices
+- Traffic density metrics
+- Urban infrastructure features
+
+This streamlined approach ensured model parsimony while retaining interpretability, leading to a more efficient and explainable final solution.
+
 ## Key Factors
 
 1. **Satellite Data Resampling**
