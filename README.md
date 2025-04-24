@@ -36,63 +36,105 @@ The solution integrates a diverse range of datasets to capture the complex facto
 |
  Surface temperature (LWIR11), thermal variation metrics, temporal stability indices 
 |
- [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/group/landsat) 
+[
+Microsoft Planetary Computer
+](
+https://planetarycomputer.microsoft.com/dataset/group/landsat
+)
 |
 |
  Sentinel-2 Satellite Data 
 |
  EVI, Albedo, vegetation stress indices, spectral anomaly scores 
 |
- [Microsoft Planetary Computer](https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a)
+[
+Microsoft Planetary Computer
+](
+https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a
+)
 |
 |
  NYC Tree Census (2015) 
 |
  Tree count, avg_tree_health, tree_size, ring features 
 |
- NYC Open Data 
+[
+NYC Open Data
+](
+https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh/about_data
+)
 |
 |
  NYC Building Footprints 
 |
  Building count/height/area, ground elevation, ring features 
 |
- NYC Open Data 
+[
+shp file
+](
+https://nycmaps-nyc.hub.arcgis.com/datasets/nyc::building/about
+)
+ / 
+[
+kml file
+](
+https://challenge.ey.com/challenges/the-2025-ey-open-science-ai-and-data-challenge-cooling-urban-heat-islands-external-participants/data-description
+)
 |
 |
  NYC Traffic 2022 
 |
  Traffic volume, traffic count, ring features 
 |
- NYC Open Data 
+[
+NYC Open Data
+](
+https://data.cityofnewyork.us/Transportation/Traffic-Volume-Counts/btm5-ppia/about_data
+)
 |
 |
  OSMNX Street Networks 
 |
  Distance to water/park, street length, road/node density 
 |
- OSMNX Library 
+[
+OSMNX Library
+](
+https://osmnx.readthedocs.io/en/stable/
+)
 |
 |
  NYC Planimetric Database 
 |
  Elevation, elevation range, slope 
 |
- NYC Open Data 
+[
+NYC Open Data
+](
+https://data.cityofnewyork.us/Transportation/NYC-Planimetric-Database-Elevation-Points/szwg-xci6
+)
 |
 |
  Weather Data 
 |
  Air temperature, humidity, wind speed, solar flux, wind direction 
 |
- NY Mesonet 
+[
+NY Mesonet
+](
+https://nysmesonet.org/
+)
 |
 |
  Forestry Data 
 |
  Mean tree DBH, forestry count, risk score, species details 
 |
- Center for Open Science 
+[
+NYC Open Data
+](
+https://data.cityofnewyork.us/Environment/Forestry-Tree-Points/hn5i-inap/about_data
+)
 |
 
 ## Methodology
