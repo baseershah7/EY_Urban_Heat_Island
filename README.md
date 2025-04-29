@@ -1,6 +1,6 @@
 # Urban Heat Island (UHI) Prediction Model - NYC Bronx & Manhattan
 
-## 🏆 3rd Place Solution on EY Urban Heat Island Competition Leaderboard
+## 3rd Place Solution on EY Urban Heat Island Competition Leaderboard
 
 This repository contains my solution for modeling and predicting the Urban Heat Island (UHI) effect in New York City's Bronx and Manhattan regions. The model achieved a leaderboard score of 0.9837, securing 3rd place in the competition and earning recognition as a global semi-finalist by the organizers.
 
